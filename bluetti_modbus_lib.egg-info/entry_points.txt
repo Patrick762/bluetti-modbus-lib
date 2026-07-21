@@ -1,3 +1,0 @@
-[console_scripts]
-bluetti-modread = bluetti_modbus_lib.scripts.bluetti_modread:start
-
