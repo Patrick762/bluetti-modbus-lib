@@ -23,9 +23,9 @@ class UIntField(DeviceField):
     def parse(self, client: ModbusTcpClient, data: bytes) -> Any:
         return client.convert_from_registers(
             data,
-            client.DATATYPE.INT32,
+            client.DATATYPE.UINT16,
             word_order="little",
-        )
+        ) * self.multiplier
 
     def in_range(self, value: int) -> bool:
         if self.min is not None and self.min > value:
