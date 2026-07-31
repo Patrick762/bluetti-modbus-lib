@@ -19,7 +19,7 @@ async def async_read(host: str, port: int, type: str):
 def start():
     parser = argparse.ArgumentParser(description="Read bluetti devices via modbus")
     parser.add_argument("-c", "--host", type=str, help="IP-address of the device")
-    parser.add_argument("-p", "--port", type=int, help="Port of the device", nargs="?", const=502)
+    parser.add_argument("-p", "--port", type=int, help="Port of the device")
     parser.add_argument("-t", "--type", type=str, help="Device type")
     args = parser.parse_args()
 
