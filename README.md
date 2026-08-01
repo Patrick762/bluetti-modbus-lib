@@ -12,6 +12,12 @@ This library is provided without any warranty or support by Bluetti. I do not ta
 
 TBD
 
+## Installation
+
+```bash
+pip install bluetti-modbus-lib
+```
+
 ## Commands for testing
 
 Commands included in this library should only be used for testing.
