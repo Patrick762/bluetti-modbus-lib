@@ -44,7 +44,7 @@ class BluettiModbusClient:
 
                 # Read registers
                 for register in self.device.fields:
-                    LOGGER.error(f"Reading register at address {register.address}")
+                    LOGGER.debug(f"Reading register at address {register.address}")
 
                     result = self.client.read_holding_registers(
                         address=register.address,
