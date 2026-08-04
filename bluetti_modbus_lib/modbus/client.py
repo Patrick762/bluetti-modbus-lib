@@ -39,7 +39,7 @@ class BluettiModbusClient:
                         retries_left = retries_left - 1
                     else:
                         break
-                
+
                 LOGGER.debug("Connected to device")
 
                 # Read registers
