@@ -4,6 +4,7 @@ import asyncio
 from ..devices import Balco260
 from ..modbus import BluettiModbusClient
 
+
 async def async_read(host: str, port: int, type: str):
     if type != "balco260":
         print("Only 'balco260' supported as type")
@@ -16,6 +17,7 @@ async def async_read(host: str, port: int, type: str):
     for r in result:
         print(r)
 
+
 def start():
     parser = argparse.ArgumentParser(description="Read bluetti devices via modbus")
     parser.add_argument("-c", "--host", type=str, help="IP-address of the device")
@@ -26,5 +28,5 @@ def start():
     if args.host is None or args.port is None or args.type is None:
         parser.print_help()
         return
-    
+
     asyncio.run(async_read(args.host, args.port, args.type))

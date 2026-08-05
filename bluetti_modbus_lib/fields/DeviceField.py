@@ -2,9 +2,11 @@ from typing import Any
 
 from pymodbus.client import ModbusTcpClient
 
+from ..fields import FieldName
+
 
 class DeviceField:
-    def __init__(self, name: str, address: int, unit: str, size: int):
+    def __init__(self, name: FieldName, address: int, unit: str, size: int):
         self.name = name
         self.address = address
         self.unit = unit

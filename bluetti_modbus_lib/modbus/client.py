@@ -9,6 +9,7 @@ from ..base_devices.bluetti_device import BluettiDevice
 
 LOGGER = logging.getLogger(__name__)
 
+
 @dataclass
 class ClientReturnValue:
     name: str
@@ -17,6 +18,7 @@ class ClientReturnValue:
 
     def __str__(self):
         return f"{self.name}: {self.value} {self.unit}"
+
 
 class BluettiModbusClient:
     def __init__(self, host: str, port: int, device: BluettiDevice):
@@ -52,7 +54,11 @@ class BluettiModbusClient:
 
                     if len(result.registers) == 1:
                         parsed = register.parse(self.client, result.registers)
-                        buffer.append(ClientReturnValue(register.name, register.unit, parsed))
+                        buffer.append(
+                            ClientReturnValue(
+                                register.name.value, register.unit, parsed
+                            )
+                        )
 
         except TimeoutError:
             LOGGER.error("Timeout")
