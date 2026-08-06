@@ -41,8 +41,6 @@ class BluettiModbusClient:
             await self.conn.close()
 
         return [
-            ClientReturnValue(
-                name=n, unit=self.device._register_fields.get(n).unit, value=v
-            )
+            ClientReturnValue(name=n, unit=self.device.get_unit(n), value=v)
             for (n, v) in self.device._values.items()
         ]
