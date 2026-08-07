@@ -1,7 +1,6 @@
 import argparse
 import asyncio
 
-from ..devices import Balco260
 from ..modbus import BluettiModbusClient
 
 
@@ -10,7 +9,7 @@ async def async_read(host: str, port: int, type: str):
         print("Only 'balco260' supported as type")
         return
 
-    client = BluettiModbusClient(host, port, Balco260())
+    client = BluettiModbusClient(host, port, type)
 
     result = await client.read()
 

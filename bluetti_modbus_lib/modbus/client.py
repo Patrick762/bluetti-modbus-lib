@@ -2,10 +2,11 @@ import logging
 from typing import Any, List
 
 import async_timeout
-from pymodbus.client import ModbusTcpClient
 from dataclasses import dataclass
 
-from ..base_devices.bluetti_device import BluettiDevice
+from modbus_connection.pymodbus import ModbusConnection, ModbusTcpParams
+
+from ..devices import get_device
 
 LOGGER = logging.getLogger(__name__)
 
@@ -21,48 +22,25 @@ class ClientReturnValue:
 
 
 class BluettiModbusClient:
-    def __init__(self, host: str, port: int, device: BluettiDevice):
-        self.client = ModbusTcpClient(host, port=port)
-        self.device = device
+    def __init__(self, host: str, port: int, device_type: str):
+        self.conn = ModbusConnection(ModbusTcpParams(host=host, port=port))
+        self.device = get_device(device_type, self.conn.for_unit(1))
 
-    async def read(self) -> List[ClientReturnValue]:
-        buffer = []
-
+    async def read(self):
         try:
+            await self.conn.connect()
+
             async with async_timeout.timeout(5):
-                LOGGER.debug("Connecting to device ...")
+                LOGGER.debug("Reading device data")
 
-                # Connect to device
-                retries_left = 5
-                while retries_left > 0:
-                    LOGGER.debug(f"{retries_left} retries remaining")
-                    if not self.client.connected:
-                        self.client.connect()
-                        retries_left = retries_left - 1
-                    else:
-                        break
-
-                LOGGER.debug("Connected to device")
-
-                # Read registers
-                for register in self.device.fields:
-                    LOGGER.debug(f"Reading register at address {register.address}")
-
-                    result = self.client.read_holding_registers(
-                        address=register.address,
-                    )
-
-                    if len(result.registers) == 1:
-                        parsed = register.parse(self.client, result.registers)
-                        buffer.append(
-                            ClientReturnValue(
-                                register.name.value, register.unit, parsed
-                            )
-                        )
+                await self.device.async_update()
 
         except TimeoutError:
             LOGGER.error("Timeout")
         finally:
-            self.client.close()
+            await self.conn.close()
 
-        return buffer
+        return [
+            ClientReturnValue(name=n, unit=self.device.get_field(n).unit, value=v)
+            for (n, v) in self.device._values.items()
+        ]

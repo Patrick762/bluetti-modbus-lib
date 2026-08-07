@@ -26,7 +26,7 @@ setup(
     install_requires=[
         "async_timeout",
         "asyncio",
-        "pymodbus",
+        "modbus_connection[pymodbus]",
         "logging",
     ],
     keywords=[],

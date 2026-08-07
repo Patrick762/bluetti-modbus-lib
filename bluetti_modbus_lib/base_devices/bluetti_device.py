@@ -1,13 +1,12 @@
-from typing import List
-
-from ..fields import DeviceField
+from modbus_connection.model import Component
 
 
-class BluettiDevice:
-    def __init__(
-        self,
-        fields: List[DeviceField],
-    ):
-        self.fields = fields
+class BluettiDevice(Component):
+    def field_names(self):
+        return self._register_fields.keys()
 
-        self.fields.sort(key=lambda f: f.address)
+    def get_field(self, field_name: str):
+        return self._register_fields.get(field_name)
+
+    def get_sensors(self):
+        return self.field_names()
