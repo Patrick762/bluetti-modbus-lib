@@ -1,4 +1,3 @@
-from decimal import Decimal
 from typing import Any
 
 from modbus_connection import WordOrder
@@ -19,6 +18,24 @@ def uint16(
         scale=scale,
         word_order=word_order,
         signed=False,
+        writable=writable,
+        unit=unit,
+    )
+
+
+def int16(
+    address: int,
+    *,
+    scale: float = 1.0,
+    word_order: WordOrder = "little",
+    writable: bool | WriteValidator = False,
+    unit: str | None = None,
+):
+    return NumberField(
+        address,
+        scale=scale,
+        word_order=word_order,
+        signed=True,
         writable=writable,
         unit=unit,
     )

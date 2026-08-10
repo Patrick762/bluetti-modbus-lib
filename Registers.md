@@ -8,9 +8,9 @@
 
 3. in/out (short: i/o) or destination
 
-4. power/voltage/current/energy/frequency (short: p/v/c/e/f)
+4. power/voltage/current/energy/frequency/temperature (short: p/v/c/e/f/t)
 
-5. **total** (if total over all phases/strings)
+5. **total** / **avg** (if total over all phases/strings or average over all cells)
 
 
 ## Balco260

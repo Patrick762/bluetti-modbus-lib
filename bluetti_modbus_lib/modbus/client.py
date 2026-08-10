@@ -23,14 +23,14 @@ class ClientReturnValue:
 
 class BluettiModbusClient:
     def __init__(self, host: str, port: int, device_type: str):
-        self.conn = ModbusConnection(ModbusTcpParams(host=host, port=port))
+        self.conn = ModbusConnection(ModbusTcpParams(host=host, port=port), timeout=10)
         self.device = get_device(device_type, self.conn.for_unit(1))
 
     async def read(self):
         try:
             await self.conn.connect()
 
-            async with async_timeout.timeout(5):
+            async with async_timeout.timeout(10):
                 LOGGER.debug("Reading device data")
 
                 await self.device.async_update()
