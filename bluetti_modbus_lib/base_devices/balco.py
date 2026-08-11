@@ -223,27 +223,27 @@ class BaseDeviceBalco(BluettiDevice):
         FieldType.UINT16,
         57009,
         writable=True,
-        category=FieldCategory.CONFIG,
+        category=FieldCategory.DIAGNOSTIC,
     )
     g_o_switch = field(
         FieldType.UINT16,
         57010,
         writable=True,
-        category=FieldCategory.CONFIG,
+        category=FieldCategory.DIAGNOSTIC,
     )
     b_soc_low = field(
         FieldType.UINT16,
         57016,
         writable=True,
         unit="%",
-        category=FieldCategory.CONFIG,
+        category=FieldCategory.DIAGNOSTIC,
     )
     b_soc_high = field(
         FieldType.UINT16,
         57017,
         writable=True,
         unit="%",
-        category=FieldCategory.CONFIG,
+        category=FieldCategory.DIAGNOSTIC,
     )
     d_num_battery_packs = field(
         FieldType.UINT16,
