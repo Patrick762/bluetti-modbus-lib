@@ -87,7 +87,7 @@ def field(
     count: int = 1,
     enum_type: Enum | None = None,
     category: FieldCategory | None = None,
-    state_class: FieldStateClass = FieldStateClass.MEASUREMENT,
+    state_class: FieldStateClass | None = None,
     device_class: DeviceClass | None = None,
 ) -> RegisterField:
     reg: RegisterField | None = None
@@ -108,7 +108,8 @@ def field(
 
     # handle extras
     if reg is not None:
-        set_state_class(reg, state_class)
+        if state_class is not None:
+            set_state_class(reg, state_class)
 
         if category is not None:
             set_category(reg, category)

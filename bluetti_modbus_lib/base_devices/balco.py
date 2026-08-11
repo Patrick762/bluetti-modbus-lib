@@ -8,37 +8,41 @@ class BaseDeviceBalco(BluettiDevice):
     d_num_inverters = field(
         FieldType.UINT16,
         50001,
-        unit="pcs",
         category=FieldCategory.DIAGNOSTIC,
     )
     ac_o_p_total = field(
         FieldType.UINT16,
         50002,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     pv_i_p_total = field(
         FieldType.UINT16,
         50004,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     g_i_p_total = field(
         FieldType.UINT16,
         50006,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     d_inverter_total = field(
         FieldType.UINT16,
         50008,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     pv_ac_p = field(
         FieldType.UINT16,
         50010,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     ac_o_e_total = field(
@@ -113,6 +117,7 @@ class BaseDeviceBalco(BluettiDevice):
         50214,
         unit="Hz",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.FREQUENCY,
     )
     # TODO
@@ -120,6 +125,7 @@ class BaseDeviceBalco(BluettiDevice):
         FieldType.UINT16,
         50269,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     pv_1_i_v = field(
@@ -127,6 +133,7 @@ class BaseDeviceBalco(BluettiDevice):
         50270,
         unit="V",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.VOLTAGE,
     )
     pv_1_i_c = field(
@@ -134,12 +141,14 @@ class BaseDeviceBalco(BluettiDevice):
         50271,
         unit="A",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.CURRENT,
     )
     pv_2_i_p = field(
         FieldType.UINT16,
         50273,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     pv_2_i_v = field(
@@ -147,6 +156,7 @@ class BaseDeviceBalco(BluettiDevice):
         50274,
         unit="V",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.VOLTAGE,
     )
     pv_2_i_c = field(
@@ -154,12 +164,14 @@ class BaseDeviceBalco(BluettiDevice):
         50275,
         unit="A",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.CURRENT,
     )
     pv_3_i_p = field(
         FieldType.UINT16,
         50277,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     pv_3_i_v = field(
@@ -167,6 +179,7 @@ class BaseDeviceBalco(BluettiDevice):
         50278,
         unit="V",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.VOLTAGE,
     )
     pv_3_i_c = field(
@@ -174,12 +187,14 @@ class BaseDeviceBalco(BluettiDevice):
         50279,
         unit="A",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.CURRENT,
     )
     pv_4_i_p = field(
         FieldType.UINT16,
         50281,
         unit="W",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.POWER,
     )
     pv_4_i_v = field(
@@ -187,6 +202,7 @@ class BaseDeviceBalco(BluettiDevice):
         50282,
         unit="V",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.VOLTAGE,
     )
     pv_4_i_c = field(
@@ -194,6 +210,7 @@ class BaseDeviceBalco(BluettiDevice):
         50283,
         unit="A",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.CURRENT,
     )
     # TODO PV 5 if needed
@@ -231,7 +248,6 @@ class BaseDeviceBalco(BluettiDevice):
     d_num_battery_packs = field(
         FieldType.UINT16,
         51001,
-        unit="pcs",
         category=FieldCategory.DIAGNOSTIC,
     )
     b_v_total = field(
@@ -239,6 +255,7 @@ class BaseDeviceBalco(BluettiDevice):
         51002,
         unit="V",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.VOLTAGE,
     )
     b_c_total = field(
@@ -246,18 +263,21 @@ class BaseDeviceBalco(BluettiDevice):
         51003,
         unit="A",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.CURRENT,
     )
     b_soc_total = field(
         FieldType.UINT16,
         51004,
         unit="%",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.BATTERY,
     )
     b_soh_total = field(
         FieldType.UINT16,
         51005,
         unit="%",
+        state_class=FieldStateClass.MEASUREMENT,
         category=FieldCategory.DIAGNOSTIC,
     )
     # TODO
@@ -273,6 +293,7 @@ class BaseDeviceBalco(BluettiDevice):
         51219,
         unit="V",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.VOLTAGE,
     )
     b_c = field(
@@ -280,12 +301,14 @@ class BaseDeviceBalco(BluettiDevice):
         51220,
         unit="A",
         scale=0.1,
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.CURRENT,
     )
     b_soc = field(
         FieldType.UINT16,
         51221,
         unit="%",
+        state_class=FieldStateClass.MEASUREMENT,
         device_class=DeviceClass.BATTERY,
     )
     b_soh = field(
@@ -297,25 +320,25 @@ class BaseDeviceBalco(BluettiDevice):
     b_cycle_count = field(
         FieldType.UINT16,
         51223,
+        state_class=FieldStateClass.MEASUREMENT,
         category=FieldCategory.DIAGNOSTIC,
     )
     b_t_avg = field(
         FieldType.INT16,
         51224,
         unit="°C",
+        state_class=FieldStateClass.MEASUREMENT,
         category=FieldCategory.DIAGNOSTIC,
         device_class=DeviceClass.TEMPERATURE,
     )
     b_cell_count = field(
         FieldType.UINT16,
         51234,
-        unit="pcs",
         category=FieldCategory.DIAGNOSTIC,
     )
     b_ntc_count = field(
         FieldType.UINT16,
         51235,
-        unit="pcs",
         category=FieldCategory.DIAGNOSTIC,
     )
     b_i_e = field(
