@@ -18,7 +18,7 @@ class ClientReturnValue:
     value: Any
 
     def __str__(self):
-        return f"{self.name}: {self.value} {self.unit or ""}"
+        return f"{self.name}: {self.value} {self.unit or " "}"
 
 
 class BluettiModbusClient:
