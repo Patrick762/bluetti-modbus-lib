@@ -104,7 +104,7 @@ def field(
         case FieldType.STRING:
             reg = bluetti_string(address, length)
         case FieldType.ENUM:
-            reg = enum(50022, enum_type, count=count, word_order="little")
+            reg = enum(address, enum_type, count=count, word_order="little")
 
     # handle extras
     if reg is not None:
