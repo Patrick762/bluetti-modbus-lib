@@ -1,5 +1,5 @@
 import logging
-from typing import Any, List
+from typing import Any
 
 import async_timeout
 from dataclasses import dataclass
@@ -16,9 +16,12 @@ class ClientReturnValue:
     name: str
     unit: str
     value: Any
+    category: str
+    state_class: str
+    device_class: str
 
     def __str__(self):
-        return f"{self.name}: {self.value} {self.unit or " "}"
+        return f"{self.name}: {self.value} {self.unit or " "} (category: {self.category or "n/a"}) (state_class: {self.state_class or "n/a"}) (device_class: {self.device_class or "n/a"})"
 
 
 class BluettiModbusClient:
@@ -41,6 +44,13 @@ class BluettiModbusClient:
             await self.conn.close()
 
         return [
-            ClientReturnValue(name=n, unit=self.device.get_field(n).unit, value=v)
+            ClientReturnValue(
+                name=n,
+                unit=self.device.get_field(n).unit,
+                value=v,
+                category=getattr(self.device.get_field(n), "category", None),
+                state_class=getattr(self.device.get_field(n), "state_class", None),
+                device_class=getattr(self.device.get_field(n), "device_class", None),
+            )
             for (n, v) in self.device._values.items()
         ]

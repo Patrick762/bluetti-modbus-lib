@@ -1,11 +1,14 @@
+from enum import Enum, unique
 from typing import Any
 
-from modbus_connection import WordOrder
-from modbus_connection.model import RegisterField, WriteValidator
-from modbus_connection.model.fields import NumberField
+from modbus_connection.model import RegisterField, WriteValidator, enum, uint32
+from modbus_connection.model.fields import NumberField, StringField
+
+from .field_modifiers import set_category, set_state_class, set_device_class
+from .field_extras import FieldCategory, FieldStateClass, DeviceClass
 
 
-class BluettiStringField(RegisterField[str]):
+class BluettiStringField(StringField):
     def decode(self, words: list[int], scale_exponent: int | None = None) -> str:
         raw = b"".join((w & 0xFFFF).to_bytes(2, "little") for w in words)
         return raw.decode("ascii", errors="ignore").rstrip("\x00")
@@ -62,3 +65,55 @@ def bluetti_string(
         writable=False,
         force_fc16=False,
     )
+
+
+@unique
+class FieldType(Enum):
+    INT16 = "int16"
+    UINT16 = "uint16"
+    UINT32 = "uint32"
+    STRING = "str"
+    ENUM = "enum"
+
+
+def field(
+    t: FieldType,
+    address: int,
+    *,
+    scale: float = 1.0,
+    writable: bool | WriteValidator = False,
+    unit: str | None = None,
+    length: int = 1,
+    count: int = 1,
+    enum_type: Enum | None = None,
+    category: FieldCategory | None = None,
+    state_class: FieldStateClass = FieldStateClass.MEASUREMENT,
+    device_class: DeviceClass | None = None,
+) -> RegisterField:
+    reg: RegisterField | None = None
+
+    match t:
+        case FieldType.INT16:
+            reg = int16(address, scale=scale, writable=writable, unit=unit)
+        case FieldType.UINT16:
+            reg = uint16(address, scale=scale, writable=writable, unit=unit)
+        case FieldType.UINT32:
+            reg = uint32(
+                address, scale=scale, writable=writable, unit=unit, word_order="little"
+            )
+        case FieldType.STRING:
+            reg = bluetti_string(address, length)
+        case FieldType.ENUM:
+            reg = enum(50022, enum_type, count=count, word_order="little")
+
+    # handle extras
+    if reg is not None:
+        set_state_class(reg, state_class)
+
+        if category is not None:
+            set_category(reg, category)
+
+        if device_class is not None:
+            set_device_class(reg, device_class)
+
+    return reg
