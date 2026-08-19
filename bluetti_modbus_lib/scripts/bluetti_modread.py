@@ -5,8 +5,8 @@ from ..modbus import BluettiModbusClient
 
 
 async def async_read(host: str, port: int, type: str):
-    if type != "balco260":
-        print("Only 'balco260' supported as type")
+    if type != "balco260" and type != "ebox":
+        print("Only 'balco260' and 'ebox' supported as type")
         return
 
     client = BluettiModbusClient(host, port, type)
