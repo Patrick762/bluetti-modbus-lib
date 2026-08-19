@@ -26,6 +26,7 @@ If you want to support this project and buy a bluetti device, you can use the fo
 
 > [!NOTE]
 > DE: Bei diesem Link handelt es sich um einen Affiliate-Link. Wenn du darüber kaufst, erhalte ich eine kleine Provision. Für dich entstehen keine Zusatzkosten.
+>
 > EN: This is an affiliate link. If you make a purchase through it, I may earn a small commission at no extra cost to you.
 
 ## Commands for testing
