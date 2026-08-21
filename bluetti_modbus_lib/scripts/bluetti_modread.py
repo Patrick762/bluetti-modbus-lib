@@ -2,11 +2,12 @@ import argparse
 import asyncio
 
 from ..modbus import BluettiModbusClient
+from ..devices.getter import get_device
 
 
 async def async_read(host: str, port: int, type: str):
-    if type != "balco260":
-        print("Only 'balco260' supported as type")
+    if get_device(type) is None:
+        print("type not supported")
         return
 
     client = BluettiModbusClient(host, port, type)
