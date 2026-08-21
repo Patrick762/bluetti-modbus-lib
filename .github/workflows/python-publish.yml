@@ -31,7 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install build
     - name: Import latest registers
-      run: pip install requests && python import.py && ./format.sh
+      run: pip install requests black && python import.py && ./format.sh
     - name: Build package
       env:
         LIB_VERSION: ${{ github.event.release.tag_name }}
