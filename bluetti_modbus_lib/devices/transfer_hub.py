@@ -1,4 +1,4 @@
-from ..base_devices.balco import BluettiDevice
+from ..base_devices import BluettiDevice
 
 
 class TransferHub(BluettiDevice):
