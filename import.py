@@ -55,6 +55,8 @@ from ..fields import field, FieldType
 from ..fields.field_extras import FieldCategory, FieldStateClass, DeviceClass
 from ..enums import *
 
+# GENERATED FILE! DO NOT EDIT!
+
 class {name}(BluettiDevice):
     {fields}
 """
