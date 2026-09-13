@@ -131,5 +131,7 @@ bluetti-modwrite -c 10.2.1.60 -p 502 -t balco260 -f ac_o_switch -v 1
 ```
 
 Example output:
-Wrote to device field ac_o_switch value 1
+
 ```bash
+Wrote to device field ac_o_switch value 1
+```
