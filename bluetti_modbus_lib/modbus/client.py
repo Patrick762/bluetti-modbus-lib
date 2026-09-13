@@ -54,3 +54,17 @@ class BluettiModbusClient:
             )
             for (n, v) in self.device._values.items()
         ]
+
+    async def write(self, field: str, value: Any):
+        try:
+            await self.conn.connect()
+
+            async with async_timeout.timeout(10):
+                LOGGER.debug("Writing to device")
+
+                await self.device.write(field, value)
+
+        except TimeoutError:
+            LOGGER.error("Timeout")
+        finally:
+            await self.conn.close()

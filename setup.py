@@ -33,6 +33,7 @@ setup(
     entry_points={
         "console_scripts": [
             "bluetti-modread = bluetti_modbus_lib.scripts.bluetti_modread:start",
+            "bluetti-modwrite = bluetti_modbus_lib.scripts.bluetti_modwrite:start",
         ],
     },
     classifiers=[

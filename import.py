@@ -62,6 +62,9 @@ for d in devices_json:
                 f"\n\t\tstate_class=FieldStateClass.{str(f["state_type"]).upper()},"
             )
 
+        if "writable" in f:
+            fields += f"\n\t\twritable={str(f["writable"])},"
+
         if "sensor" in f:
             fields += f"\n\t\tdevice_class=DeviceClass.{str(f["sensor"]).upper()},"
 

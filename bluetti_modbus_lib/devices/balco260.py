@@ -29,6 +29,7 @@ class Balco260(BluettiDevice):
         t=FieldType.UINT16,
         address=57001,
         scale=1.0,
+        writable=True,
         count=1,
     )
     b_c = field(
@@ -103,6 +104,7 @@ class Balco260(BluettiDevice):
         unit="%",
         scale=1.0,
         category=FieldCategory.CONFIG,
+        writable=True,
         count=1,
     )
     b_soc_low = field(
@@ -111,6 +113,7 @@ class Balco260(BluettiDevice):
         unit="%",
         scale=1.0,
         category=FieldCategory.CONFIG,
+        writable=True,
         count=1,
     )
     b_soc_total = field(
@@ -193,8 +196,10 @@ class Balco260(BluettiDevice):
     d_inverter_total = field(
         t=FieldType.UINT16,
         address=50008,
+        unit="W",
         scale=1.0,
-        category=FieldCategory.DIAGNOSTIC,
+        state_class=FieldStateClass.MEASUREMENT,
+        device_class=DeviceClass.POWER,
         count=2,
     )
     d_inverter_type = field(
@@ -258,6 +263,7 @@ class Balco260(BluettiDevice):
         address=57009,
         scale=1.0,
         category=FieldCategory.CONFIG,
+        writable=True,
         count=1,
     )
     g_o_e_total = field(
@@ -274,6 +280,7 @@ class Balco260(BluettiDevice):
         address=57010,
         scale=1.0,
         category=FieldCategory.CONFIG,
+        writable=True,
         count=1,
     )
     pv_1_i_c = field(

@@ -54,44 +54,82 @@ bluetti-modread -c 10.2.1.60 -p 502 -t balco260
 Example output:
 
 ```bash
-num_inverters: 1 pcs
-ac_load_power_total: 0 W
-pv_power_total: 0 W
-grid_power_total: 0 W
-inverter_out_power_total: 0 W
-pv_to_ac_power: 0 W
-ac_load_energy_total: 0.1 kWh
-pv_to_ac_load_energy_total: 0.1 kWh
-pc_charging_energy_total: 0.0 kWh
-grid_charging_energy_total: 0.0 kWh
-grid_export_energy_total: 0.0 kWh
-input_power_pv1: 0 W
-input_voltage_pv1: 0.0 V
-input_current_pv1: 0.0 A
-input_power_pv2: 0 W
-input_voltage_pv2: 0.0 V
-input_current_pv2: 0.0 A
-input_power_pv3: 0 W
-input_voltage_pv3: 0.0 V
-input_current_pv3: 0.0 A
-input_power_pv4: 0 W
-input_voltage_pv4: 0.0 V
-input_current_pv4: 0.0 A
-num_packs: 0 pcs
-total_bat_voltage: 25.900000000000002 V
-total_bat_current: 0.7000000000000001 A
-total_bat_soc: 0 %
-total_bat_soh: 0 %
-total_bat_charge_time: 0 Min
-total_bat_discharge_time: 0 Min
-pack_voltage: 25.900000000000002 V
-pack_current: 2999.3 A
-pack_soc: 36 %
-pack_soh: 100 %
-pack_cycles: 0 times
-pack_temp_avg: 0 °C
-pack_cell_count: 8 pcs
-pack_ntc_count: 4 pcs
-pack_energy_charged: 2580 Wh
-pack_energy_discharged: 2500 Wh
+ac_o_e_total: 277.3 kWh (category: n/a) (state_class: FieldStateClass.TOTAL_INCREASING) (device_class: DeviceClass.ENERGY)
+ac_o_p_total: 429 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+ac_o_switch: 0   (category: n/a) (state_class: n/a) (device_class: n/a)
+b_c: 2982.6 A (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.CURRENT)
+b_c_total: 17.3 A (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.CURRENT)
+b_cell_count: 8   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+b_cycle_count: 25   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+b_i_e: 67.25 kWh (category: n/a) (state_class: FieldStateClass.TOTAL_INCREASING) (device_class: DeviceClass.ENERGY)
+b_ntc_count: 4   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+b_o_e: 61.17 kWh (category: n/a) (state_class: FieldStateClass.TOTAL_INCREASING) (device_class: DeviceClass.ENERGY)
+b_soc: 71 % (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.BATTERY)
+b_soc_high: 100 % (category: FieldCategory.CONFIG) (state_class: n/a) (device_class: n/a)
+b_soc_low: 50 % (category: FieldCategory.CONFIG) (state_class: n/a) (device_class: n/a)
+b_soc_total: 0 % (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.BATTERY)
+b_soh: 99 % (category: FieldCategory.DIAGNOSTIC) (state_class: FieldStateClass.MEASUREMENT) (device_class: n/a)
+b_soh_total: 0 % (category: FieldCategory.DIAGNOSTIC) (state_class: FieldStateClass.MEASUREMENT) (device_class: n/a)
+b_t_avg: 0 °C (category: FieldCategory.DIAGNOSTIC) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.TEMPERATURE)
+b_type: Balco260   (category: n/a) (state_class: n/a) (device_class: n/a)
+b_v: 26.1 V (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.VOLTAGE)
+b_v_total: 26.1 V (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.VOLTAGE)
+d_inverter_fault: InverterFault.NoFault   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+d_inverter_status: InverterStatus.GridConnectedDischarging   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+d_inverter_total: 432 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+d_inverter_type: Balco260   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+d_inverter_warning: InverterWarning.NoWarning   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+d_num_battery_packs: 0   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+d_num_inverters: 1   (category: FieldCategory.DIAGNOSTIC) (state_class: n/a) (device_class: n/a)
+g_i_e_total: 258.4 kWh (category: n/a) (state_class: FieldStateClass.TOTAL_INCREASING) (device_class: DeviceClass.ENERGY)
+g_i_f: 50.0 Hz (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.FREQUENCY)
+g_i_p_total: 0 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+g_i_switch: 1   (category: FieldCategory.CONFIG) (state_class: n/a) (device_class: n/a)
+g_o_e_total: 29.5 kWh (category: n/a) (state_class: FieldStateClass.TOTAL_INCREASING) (device_class: DeviceClass.ENERGY)
+g_o_switch: 1   (category: FieldCategory.CONFIG) (state_class: n/a) (device_class: n/a)
+pv_1_i_c: 0.0 A (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.CURRENT)
+pv_1_i_p: 0 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+pv_1_i_v: 0.0 V (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.VOLTAGE)
+pv_2_i_c: 0.0 A (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.CURRENT)
+pv_2_i_p: 0 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+pv_2_i_v: 0.0 V (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.VOLTAGE)
+pv_3_i_c: 0.0 A (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.CURRENT)
+pv_3_i_p: 0 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+pv_3_i_v: 42.9 V (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.VOLTAGE)
+pv_4_i_c: 0.0 A (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.CURRENT)
+pv_4_i_p: 0 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+pv_4_i_v: 43.3 V (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.VOLTAGE)
+pv_ac_e: 8.6 kWh (category: n/a) (state_class: FieldStateClass.TOTAL_INCREASING) (device_class: DeviceClass.ENERGY)
+pv_ac_p: 0 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
+pv_i_e_total: 77.4 kWh (category: n/a) (state_class: FieldStateClass.TOTAL_INCREASING) (device_class: DeviceClass.ENERGY)
+pv_i_p_total: 0 W (category: n/a) (state_class: FieldStateClass.MEASUREMENT) (device_class: DeviceClass.POWER)
 ```
+
+
+### Read device data for supported devices
+
+```bash
+usage: bluetti-modwrite [-h] [-c HOST] [-p PORT] [-t TYPE] [-f FIELD] [-v VALUE]
+
+Write to bluetti device field via modbus
+
+options:
+  -h, --help         show this help message and exit
+  -c, --host HOST    IP-address of the device
+  -p, --port PORT    Port of the device
+  -t, --type TYPE    Device type
+  -f, --field FIELD  Field name
+  -v, --value VALUE  Value to write
+```
+
+Example:
+
+This turns on the AC outlet on the Balco260
+
+```bash
+bluetti-modwrite -c 10.2.1.60 -p 502 -t balco260 -f ac_o_switch -v 1
+```
+
+Example output:
+Wrote to device field ac_o_switch value 1
+```bash
