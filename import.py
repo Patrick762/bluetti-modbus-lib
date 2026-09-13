@@ -71,6 +71,9 @@ for d in devices_json:
         if "length" in f and f["datatype"] not in ["string", "swstring"]:
             fields += f"\n\t\tcount={f["length"]},"
 
+        if f["name"] == "d_control_mode":
+            fields += f"\n\t\tenum_type=ControlMode,"
+
         if f["name"] == "d_inverter_fault":
             fields += f"\n\t\tenum_type=InverterFault,"
 

@@ -174,6 +174,14 @@ class EP2000(BluettiDevice):
         device_class=DeviceClass.VOLTAGE,
         count=1,
     )
+    d_control_mode = field(
+        t=FieldType.ENUM,
+        address=57503,
+        scale=1.0,
+        category=FieldCategory.CONFIG,
+        count=1,
+        enum_type=ControlMode,
+    )
     d_inverter_fault = field(
         t=FieldType.ENUM,
         address=50027,
