@@ -2,7 +2,7 @@ import argparse
 import asyncio
 
 from ..modbus import BluettiModbusClient
-from ..devices.getter import get_device
+from ..devices import get_device
 
 
 async def async_read(host: str, port: int, type: str):

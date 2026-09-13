@@ -1,13 +1,12 @@
 import requests
 
-tag = "0.0.20"
-url = f"https://github.com/Patrick762/bluetti-registers/releases/download/{tag}/modbus-tcp.json"
+url = "https://patrick762.github.io/bluetti-registers/devices.json"
 
 output = "bluetti_modbus_lib/devices/"
 
-print("Loading devices list schema")
+print("Loading devices list")
 
-schema = requests.get(url).json()
+devices_json = requests.get(url).json()
 
 
 def to_camel_case(snake_str):
@@ -20,19 +19,25 @@ def get_type(t: str, name: str):
     if upper == "BOOL":
         return "UINT16"
 
+    if upper == "SWSTRING":
+        return "STRING"
+
     if upper != "UINT" and upper != "INT":
         return upper
 
     if upper == "INT":
         return "INT16"
 
-    if name in ["b_i_e", "b_o_e"]:
+    if name in ["b_i_e", "b_o_e"]:  # Could be checked using field size == 2
         return "UINT32"
 
     return "UINT16"
 
 
-for d in schema:
+for d in devices_json:
+    if d["comm_type"] != "modbus":
+        continue
+
     name = d["name"]
     file_name = str(name).lower() + ".py"
     fields = ""
@@ -40,37 +45,33 @@ for d in schema:
     for f in d["fields"]:
         fields += f"""
     {f["name"]} = field(
-        t=FieldType.{get_type(str(f["content"]), f["name"])},
-        address={f["address"]},"""
+        t=FieldType.{get_type(str(f["datatype"]), f["name"])},
+        address={f["start"]},"""
 
         if "unit" in f:
             fields += f'\n\t\tunit="{f["unit"]}",'
 
-        if "scale" in f:
-            fields += f"\n\t\tscale={f["scale"]},"
+        if "scaling" in f:
+            fields += f"\n\t\tscale={f["scaling"]},"
 
         if "category" in f:
             fields += f"\n\t\tcategory=FieldCategory.{str(f["category"]).upper()},"
 
-        if "state_class" in f:
+        if "state_type" in f:
             fields += (
-                f"\n\t\tstate_class=FieldStateClass.{str(f["state_class"]).upper()},"
+                f"\n\t\tstate_class=FieldStateClass.{str(f["state_type"]).upper()},"
             )
 
-        if "device_class" in f:
-            fields += (
-                f"\n\t\tdevice_class=DeviceClass.{str(f["device_class"]).upper()},"
-            )
+        if "sensor" in f:
+            fields += f"\n\t\tdevice_class=DeviceClass.{str(f["sensor"]).upper()},"
 
-        if "length" in f and f["content"] == "string":
+        if "length" in f and f["datatype"] in ["string", "swstring"]:
             fields += f"\n\t\tlength={f["length"]},"
 
-        if "length" in f and f["content"] != "string":
+        if "length" in f and f["datatype"] not in ["string", "swstring"]:
             fields += f"\n\t\tcount={f["length"]},"
 
         # TODO enum building
-        if "options" in f:
-            fields += f"\n\t\tenum_type={to_camel_case(f["options"])},"
 
         fields += "\n\t)"
 
@@ -81,9 +82,9 @@ from ..enums import *
 
 # GENERATED FILE! DO NOT EDIT!
 
-class {name}(BluettiDevice):
-    {fields}
+
+class {name}(BluettiDevice):{fields}
 """
 
     with open(output + file_name, "w") as f:
-        f.write(content)
+        f.write(content.replace("\t", "    "))
