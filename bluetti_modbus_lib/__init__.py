@@ -1,2 +1,2 @@
 from .modbus.client import *
-from .devices.getter import *
+from .devices import get_device
