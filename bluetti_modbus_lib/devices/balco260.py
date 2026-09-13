@@ -180,6 +180,7 @@ class Balco260(BluettiDevice):
         scale=1.0,
         category=FieldCategory.DIAGNOSTIC,
         count=5,
+        enum_type=InverterFault,
     )
     d_inverter_status = field(
         t=FieldType.ENUM,
@@ -187,6 +188,7 @@ class Balco260(BluettiDevice):
         scale=1.0,
         category=FieldCategory.DIAGNOSTIC,
         count=1,
+        enum_type=InverterStatus,
     )
     d_inverter_total = field(
         t=FieldType.UINT16,
@@ -208,6 +210,7 @@ class Balco260(BluettiDevice):
         scale=1.0,
         category=FieldCategory.DIAGNOSTIC,
         count=4,
+        enum_type=InverterWarning,
     )
     d_num_battery_packs = field(
         t=FieldType.UINT16,

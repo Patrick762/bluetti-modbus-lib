@@ -71,6 +71,21 @@ for d in devices_json:
         if "length" in f and f["datatype"] not in ["string", "swstring"]:
             fields += f"\n\t\tcount={f["length"]},"
 
+        if f["name"] == "d_inverter_fault":
+            fields += (
+                f"\n\t\tenum_type=InverterFault,"
+            )
+
+        if f["name"] == "d_inverter_status":
+            fields += (
+                f"\n\t\tenum_type=InverterStatus,"
+            )
+
+        if f["name"] == "d_inverter_warning":
+            fields += (
+                f"\n\t\tenum_type=InverterWarning,"
+            )
+
         # TODO enum building
 
         fields += "\n\t)"
